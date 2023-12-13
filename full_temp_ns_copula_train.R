@@ -1,4 +1,6 @@
-data = read.csv(file ="/Users/mondals/Documents/Research/Non_Gaussian_Random_Field/model_5/data_try/Raphael_data/refl_Uscale_ave_train.csv",sep = ",",header = TRUE)
+# read the csv file given in the repository
+
+data = read.csv(file.choose(),sep = ",",header = TRUE)
 
 library("geosphere")
 library("tlrmvnmvt")
@@ -195,13 +197,6 @@ negative_llh = function(a){
 }
 
 ini_theta = c(5.5410899, -1.9298124, -0.7240428, 40.3519924, -3.8351316, -0.6038322)
-
-a = Sys.time()
-llh(ini_theta)
-b = Sys.time()
-b - a
-
-
 H = optim(ini_theta,negative_llh,method = "BFGS")
 
 phi_est = exp(H$par[1])
